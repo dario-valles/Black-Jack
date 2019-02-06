@@ -100,6 +100,18 @@ body {
     }
 }
 
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .btn:link,
 .btn:visited {
     text-transform: uppercase;
@@ -107,6 +119,8 @@ body {
     display: inline-block;
     padding: 15px;
     border-radius: 90px;
+    transition: all .2s;
+    position: relative;
 }
 
 .btn:hover {
@@ -123,4 +137,31 @@ body {
 .btn-white {
     background-color: #fff;
     color: #777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 90px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out 1.5s;
+    animation-fill-mode: backwards;
 }
