@@ -1,0 +1,62 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+}
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8),
+        rgba(40, 180, 133, 0.8));
+    /* Add backgound video */
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+
+.text-box {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    transform: translate(-8%, -50%);
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 8.5vh;
+    font-weight: 400;
+    letter-spacing: 0.85vh;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 2vh;
+    font-weight: 700;
+    letter-spacing: 1.1vh;
+}
