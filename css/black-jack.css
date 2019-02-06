@@ -20,26 +20,26 @@ body {
     line-height: 1.7;
     color: #777;
     padding: 30px;
+    background-color: darkgreen;
 }
 
-.header {
+.welcome {
     height: 95vh;
     background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8),
-        rgba(40, 180, 133, 0.8));
+        rgba(40, 180, 133, 0.8)), url(../img/background-intro-black-jack.jpg);
     /* Add backgound video */
     background-size: cover;
     background-position: top;
     position: relative;
-    -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
 
 .text-box {
     position: absolute;
-    top: 30%;
-    left: 15%;
-    transform: translate(-8%, -50%);
+    top: 25%;
+    left: 50%;
+    transform: translate(-40%, -50%);
 }
 
 .heading-primary {
@@ -49,14 +49,51 @@ body {
 
 .heading-primary-main {
     display: block;
-    font-size: 8.5vh;
+    font-size: 70px;
     font-weight: 400;
-    letter-spacing: 0.85vh;
+    letter-spacing: 35px;
+    text-align: center;
+
+    animation: moveInRight 2s;
 }
 
 .heading-primary-sub {
     display: block;
-    font-size: 2vh;
+    font-size: 20px;
     font-weight: 700;
-    letter-spacing: 1.1vh;
+    letter-spacing: 17.4px;
+
+    animation: moveInLeft 2s;
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+
+    80% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(200px);
+    }
+
+    80% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
