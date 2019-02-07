@@ -1,4 +1,4 @@
-function Player(playerName, wins, currentCards) {
+function Player (playerName, wins, currentCards) {
   this.name = playerName;
   this.wins = wins;
   this.currentCards = currentCards;
@@ -16,26 +16,26 @@ const baseDeck = () => {
 
   const newDeck = () => {
     let deck = [];
-    cards.forEach(card => {
+    cards.forEach (card => {
       // let finalCard = [];
-      suits.forEach(suit => {
-        deck.push(card, suit, `${imagePath}_${card}.png`);
+      suits.forEach (suit => {
+        deck.push (card, suit, `${imagePath}_${card}.png`);
       });
     });
-    return randomizeDeck(deck);
+    return randomizeDeck (deck);
   };
 
   const randomizeDeck = deck => {
     let randomizedDeck = [];
 
     while (deck.length >= 1) {
-      let randomNumber = Math.floor(Math.random() * (deck.length - 1));
-      randomizedDeck.push(deck.splice(randomNumber, 1));
+      let randomNumber = Math.floor (Math.random () * (deck.length - 1));
+      randomizedDeck.push (deck.splice (randomNumber, 1));
     }
     return randomizedDeck;
   };
 
-  return randomizeDeck(newDeck());
+  return randomizeDeck (newDeck ());
 };
 
 const gameRules = {
@@ -43,13 +43,13 @@ const gameRules = {
   isAce: card => card === 1,
 
   receiveCard: function (deck, player) {
-    return player.currentCards.push(deck.pop());
+    return player.currentCards.push (deck.pop ());
   },
 
   playerCards: function (player) {
     let cards = [];
-    player.currentCards.forEach(card => {
-      cards.push(card[0]);
+    player.currentCards.forEach (card => {
+      cards.push (card[0]);
     });
     return cards;
   },
@@ -57,26 +57,26 @@ const gameRules = {
   playerHasBlackJack: function (player) {
     if (player.currentCards.length !== 2) return false;
 
-    let cards = this.playerCards(player);
+    let cards = this.playerCards (player);
 
     return (
-      cards.some(card => card === 1) &&
-      cards.some(card => this.tens.includes(card))
+      cards.some (card => card === 1) &&
+      cards.some (card => this.tens.includes (card))
     );
   },
 
   calculateCardsValue: function (player) {
-    const cards = this.playerCards(player);
+    const cards = this.playerCards (player);
     let aces = 0;
     let total = 0;
 
-    cards.forEach((card) => {
-      if (this.isAce(card)) {
+    cards.forEach (card => {
+      if (this.isAce (card)) {
         aces++;
       } else {
-        total += (this.tens.includes(card)) ? 10 : card;
+        total += this.tens.includes (card) ? 10 : card;
       }
-    }, );
+    });
 
     if (aces) {
       if (total <= 10 && aces === 1) {
@@ -96,19 +96,24 @@ const gameRules = {
   },
 };
 
-const newGame = baseDeck();
-let computer = new Player('computer');
-let human = new Player('human');
+const newGame = baseDeck ();
+let computer = new Player ('computer');
+let human = new Player ('human');
 // console.log (newGame);
 computer.wins = 10;
 // console.log (computer);
-computer.initialize();
-computer.currentCards.push(['king', 'hearts']);
-computer.currentCards.push([1, 'hearts']);
-computer.currentCards.push([1, 'hearts']);
-computer.currentCards.push([2, 'hearts']);
+computer.initialize ();
+computer.currentCards.push (['king', 'hearts']);
+computer.currentCards.push ([1, 'hearts']);
+computer.currentCards.push ([1, 'hearts']);
+computer.currentCards.push ([2, 'hearts']);
 // console.log(gameRules.playerHasBlackJack(computer));
-console.log(gameRules.calculateCardsValue(computer));
-gameRules.receiveCard(newGame, computer);
+console.log (gameRules.calculateCardsValue (computer));
+gameRules.receiveCard (newGame, computer);
 // console.log (computer.currentCards[0]);
 // console.log(gameRules.isAce(10));
+
+$ ('.btn-white').click (function () {
+  setTimeout (() => $ ('.welcome').css ('display', 'none'), 1200);
+  $ ('.welcome').addClass ('welcome-out');
+});
