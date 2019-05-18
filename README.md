@@ -1,8 +1,6 @@
-
-
 # BLACK JACK ServerLess
 
-This is a code assigment before starting CodeWorks BootCamp, us JS and JQuery
+This is a code assigment before starting CodeWorks BootCamp, wihth HATML, JS and JQuery
 
 ## many things learned and many many things to learn
 

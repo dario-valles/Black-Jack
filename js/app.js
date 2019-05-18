@@ -24,7 +24,7 @@ $('#hit').click(() => {
 })
 $('#stay').click(() => runComputer())
 
-function newGame() {
+function newGame () {
   inicialice()
 
   setTimeout(() => {
@@ -49,7 +49,7 @@ function newGame() {
   }, 1200)
 }
 
-function inicialice() {
+function inicialice () {
   deck = baseDeck()
 
   human.initialize()
@@ -62,7 +62,7 @@ function inicialice() {
   computer.isHuman = false
 }
 
-function runComputer() {
+function runComputer () {
   const playerValue = gameRules.calculateCardsValue(human)
   let computerValue = gameRules.calculateCardsValue(computer)
 
@@ -83,7 +83,7 @@ function runComputer() {
       if (computerValue >= 17) {
         if (computerValue >= playerValue) {
           computer.wins++
-          sleep(1000).then(() => endGame('You Loose'))
+          sleep(1000).then(() => endGame('You Lose'))
         } else {
           human.wins++
           sleep(1000).then(() => endGame('You Win'))
@@ -94,15 +94,16 @@ function runComputer() {
     }
   })
 }
+// Pendiente
+// class Player {
+//   constructor(playerName currentCards, positionX, positionY, isHuman) {
+//     this.playerName = playerName;
+//     this.wins = 0;
 
-function Player(
-  playerName,
-  wins,
-  currentCards,
-  positionX,
-  positionY,
-  isHuman
-) {
+//   }
+// }
+
+function Player (playerName, wins, currentCards, positionX, positionY, isHuman) {
   this.name = playerName
   this.wins = wins || 0
   this.currentCards = currentCards
@@ -112,14 +113,14 @@ function Player(
 
   this.initialize = function () {
     this.currentCards = []
-  }
+  };
 }
 
 const sleep = milliseconds => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
+};
 
-function baseDeck() {
+function baseDeck () {
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king']
   const suits = ['diamond', 'club', 'heart', 'spade']
   // Positions in % from mat: x = right, y = top
@@ -142,7 +143,7 @@ function baseDeck() {
       })
     })
     return randomizeDeck(deck)
-  }
+  };
 
   const randomizeDeck = deck => {
     let randomizedDeck = []
@@ -152,7 +153,7 @@ function baseDeck() {
       randomizedDeck = randomizedDeck.concat(deck.splice(randomNumber, 1))
     }
     return randomizedDeck
-  }
+  };
 
   return randomizeDeck(newDeck())
 }
@@ -232,7 +233,7 @@ const animations = {
       card.cardId = index
       $('.game-mat').append(
         () =>
-        `<img src=${this.backCardImage} id="${card.cardId}" class="cards"/>` // class="${card.cardId}"/>`
+          `<img src=${this.backCardImage} id="${card.cardId}" class="cards"/>` // class="${card.cardId}"/>`
       )
       $(`#${card.cardId}`).css({
         position: 'absolute',
@@ -255,7 +256,8 @@ const animations = {
       this.initialRotation += index <= 100 ? this.rotate : -this.rotate
       move += index >= 25 ? -0.2 : 0.2
       moveY += 0.35
-      $(`#${card.cardId}`).animate({
+      $(`#${card.cardId}`).animate(
+        {
           right: `${card.positionX}%`,
           top: `${card.positionY}%`
         },
@@ -269,7 +271,8 @@ const animations = {
 
   moveCard: function (card, flip, player) {
     $(`#${card.cardId}`).css('transform', 'rotate(0deg)')
-    $(`#${card.cardId}`).animate({
+    $(`#${card.cardId}`).animate(
+      {
         right: player.positionX + '%',
         top: player.positionY + '%'
       },
@@ -287,21 +290,29 @@ const animations = {
   }
 }
 
-const endGame = (message) => {
-  $('.result').html(message).animate({
-    fontSize: '30rem',
-    opacity: '.9',
-    left: '3rem'
-  }, 2000, function () {
-    $('.result').html('').css({
-      fontSize: '.1rem',
-      top: '3rem',
-      opacity: 0,
-      left: '30rem'
-    })
-  })
+const endGame = message => {
+  $('.result')
+    .html(message)
+    .animate(
+      {
+        fontSize: '30rem',
+        opacity: '.9',
+        left: '3rem'
+      },
+      2000,
+      function () {
+        $('.result')
+          .html('')
+          .css({
+            fontSize: '.1rem',
+            top: '3rem',
+            opacity: 0,
+            left: '30rem'
+          })
+      }
+    )
   $('#computer-score').html(computer.wins)
   $('#human-score').html(human.wins)
 
   newGame()
-}
+};
